@@ -4,6 +4,7 @@ import { withInteractable } from "@tambo-ai/react";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { Search, PlaneTakeoff, PlaneLanding, Calendar, Users, ChevronDown } from "lucide-react";
+import Link from "next/link";
 
 export const flightSearchSchema = z.object({
   fromCity: z.string(),
@@ -163,10 +164,10 @@ function FlightSearchBase(props: FlightSearchProps) {
 
       {/* Search Button */}
       <div className="absolute -bottom-9 left-1/2 -translate-x-1/2">
-        <button className="relative group overflow-hidden bg-gradient-to-r from-[#008cff] to-[#0057ff] text-white px-24 py-5 rounded-full font-black text-3xl shadow-[0_15px_30px_-5px_rgba(37,99,235,0.4)] hover:shadow-[0_20px_40px_-5px_rgba(37,99,235,0.6)] hover:scale-105 active:scale-95 transition-all uppercase tracking-tighter italic">
+        <Link href="/flights" className="relative block group overflow-hidden bg-gradient-to-r from-[#008cff] to-[#0057ff] text-white px-24 py-5 rounded-full font-black text-3xl shadow-[0_15px_30px_-5px_rgba(37,99,235,0.4)] hover:shadow-[0_20px_40px_-5px_rgba(37,99,235,0.6)] hover:scale-105 active:scale-95 transition-all uppercase tracking-tighter italic text-center">
           <span className="relative z-10">Search</span>
           <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-        </button>
+        </Link>
       </div>
     </div>
   );
