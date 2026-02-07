@@ -2,7 +2,7 @@
 
 import { TamboProvider } from "@tambo-ai/react";
 import { components, tools } from "@/lib/tambo";
-import { MessageSquare, X, ChevronDown, ChevronRight, Info, Plus, Tag, Check, Minus, Users, ArrowRight, Car, MapPin, Calendar, Clock, Star, Zap, Fuel, ShieldCheck } from "lucide-react";
+import { MessageSquare, X, ChevronDown, ChevronRight, Info, Plus, Tag, Check, Minus, Users, ArrowRight, Car, MapPin, Calendar, Clock, Star, Zap, Fuel, ShieldCheck, ShieldPlus, Heart, Trees, Pencil } from "lucide-react";
 import React, { useState } from "react";
 import Link from "next/link";
 import {
@@ -266,6 +266,7 @@ export default function SeatsPage() {
                                     <h3 className="text-xl font-black italic uppercase tracking-tighter">Cabs</h3>
                                     <span className="bg-purple-100 text-purple-600 text-[8px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider">new</span>
                                 </div>
+                                <Pencil className="w-5 h-5 text-blue-500 cursor-pointer hover:scale-110 transition-transform" />
                             </div>
 
                             <div className="p-8">
@@ -422,14 +423,109 @@ export default function SeatsPage() {
                             </div>
                         </div>
 
-                        {/* Pagination Buttons */}
-                        <div className="flex items-center justify-between py-10 pt-4 mt-8 border-t border-gray-100">
-                            <button className="bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-full py-4 px-16 font-black uppercase text-sm tracking-[0.2em] shadow-[0_10px_30px_-5px_rgba(37,99,235,0.4)] hover:scale-105 hover:shadow-blue-200 active:scale-95 transition-all">
-                                Continue
-                            </button>
-                            <button className="text-[11px] font-black text-blue-500 uppercase tracking-[0.15em] hover:underline px-8 italic">
-                                Skip to add-ons
-                            </button>
+                        {/* Flight Delay Protection */}
+                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mt-6 flex flex-col relative group">
+                            <div className="p-6 border-b flex items-center justify-between bg-white">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-600">
+                                        <Zap className="w-5 h-5 fill-current" />
+                                    </div>
+                                    <h3 className="text-xl font-black italic uppercase tracking-tighter">Flight Delay Protection</h3>
+                                </div>
+                                <div className="flex items-center gap-2 opacity-40">
+                                    <ShieldPlus className="w-6 h-6 text-indigo-900" />
+                                    <Heart className="w-4 h-4 text-pink-500 fill-current" />
+                                </div>
+                            </div>
+
+                            <div className="p-8">
+                                <div className="flex items-center justify-between items-start mb-8">
+                                    <div className="flex flex-col gap-1.5">
+                                        <h4 className="text-[15px] font-black text-gray-800">Flight delay compensation of <span className="text-blue-600">₹2,000</span></h4>
+                                        <p className="text-[11px] font-bold text-gray-400">Get flat ₹2,000 compensation if your flight is delayed by <span className="text-gray-900">1 hour</span> or more for any reason</p>
+                                        <span className="text-[10px] font-black text-blue-500 uppercase tracking-widest cursor-pointer hover:underline mt-1">View T&C</span>
+                                    </div>
+                                    <div className="flex items-center gap-6">
+                                        <div className="text-right">
+                                            <span className="text-xl font-black text-gray-900">₹ 279</span>
+                                            <span className="text-[10px] font-bold text-gray-400 block uppercase">/traveller</span>
+                                        </div>
+                                        <button className="border-2 border-blue-500 text-blue-600 px-8 py-2.5 rounded-xl font-black uppercase text-[11px] tracking-widest hover:bg-blue-50 transition-all shadow-sm">
+                                            ADD
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-4 gap-6 mb-8 border-t border-b border-gray-50 py-6">
+                                    {[
+                                        { label: "Covers Any Delay", icon: <Check className="w-3.5 h-3.5" /> },
+                                        { label: "Value For Money", icon: <Check className="w-3.5 h-3.5" /> },
+                                        { label: "Quick Claims Settlements", icon: <Check className="w-3.5 h-3.5" /> },
+                                        { label: "100% Digital Claims Process", icon: <Check className="w-3.5 h-3.5" /> }
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex items-center gap-2.5">
+                                            <div className="w-5 h-5 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                                                {item.icon}
+                                            </div>
+                                            <span className="text-[9px] font-black text-gray-600 uppercase italic tracking-wider">{item.label}</span>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div className="bg-blue-50/50 p-3 rounded-lg border border-blue-50 flex items-center gap-2 justify-center">
+                                    <div className="flex -space-x-1.5 overflow-hidden">
+                                        {[1, 2, 3].map(i => <div key={i} className="inline-block h-4 w-4 rounded-full ring-2 ring-white bg-gray-200"></div>)}
+                                    </div>
+                                    <p className="text-[10px] font-black text-gray-500 italic uppercase">1 Lakh+ travellers protected in last 3 months</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Foundation Section */}
+                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mt-6 p-8 flex items-center justify-between group">
+                            <div className="flex items-center gap-8">
+                                <div className="relative">
+                                    <div className="w-20 h-20 bg-green-50 rounded-full flex items-center justify-center text-green-600 border-2 border-dashed border-green-200 group-hover:rotate-12 transition-transform">
+                                        <Trees className="w-10 h-10" />
+                                    </div>
+                                    <div className="absolute -bottom-1 -right-1 w-6 h-6 bg-white rounded-full shadow-md flex items-center justify-center text-[10px]">🌱</div>
+                                </div>
+                                <div className="flex flex-col gap-1.5">
+                                    <h3 className="text-xl font-black italic uppercase tracking-tighter">Help us plant 4 million trees by 2027!</h3>
+                                    <p className="text-[11px] font-bold text-gray-400">Support the MakeMyTrip Foundation & donate for a greener future <span className="text-blue-500 cursor-pointer">Know More</span></p>
+                                </div>
+                            </div>
+
+                            <div className="flex gap-2">
+                                {[5, 10, 20, 50].map(amt => (
+                                    <button key={amt} className="border border-gray-100 px-6 py-3 rounded-xl font-black text-xs hover:border-blue-400 hover:text-blue-500 hover:shadow-md transition-all active:scale-95 bg-white">
+                                        ₹ {amt}
+                                    </button>
+                                ))}
+                            </div>
+                        </div>
+
+                        {/* Legal & Proceed */}
+                        <div className="mt-8 flex flex-col gap-6 mb-20 px-4">
+                            <label className="flex items-start gap-3 cursor-pointer group">
+                                <div className="relative flex items-center pt-0.5">
+                                    <input type="checkbox" className="peer h-5 w-5 cursor-pointer appearance-none rounded border-2 border-blue-200 transition-all checked:bg-blue-600 checked:border-blue-600" defaultChecked />
+                                    <Check className="absolute h-3.5 w-3.5 text-white opacity-0 peer-checked:opacity-100 transition-opacity left-0.5" />
+                                </div>
+                                <p className="text-[11px] font-bold text-gray-500 leading-relaxed italic group-hover:text-gray-700">
+                                    I understand and agree with the <span className="text-blue-500 hover:underline">Fare Rules</span>, the <span className="text-blue-500 hover:underline">Privacy Policy</span>, the <span className="text-blue-500 hover:underline">User Agreement</span> and <span className="text-blue-500 hover:underline">Terms of Service</span> of MakeMyTrip
+                                </p>
+                            </label>
+
+                            <div className="flex items-center justify-between">
+                                <button className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-full py-4 px-16 font-black uppercase text-sm tracking-[0.2em] shadow-[0_15px_30px_-8px_rgba(37,99,235,0.4)] hover:scale-110 active:scale-95 transition-all">
+                                    PROCEED TO PAY
+                                </button>
+                                <div className="flex items-center gap-6">
+                                    <span className="text-[11px] font-black text-blue-500 uppercase tracking-widest italic cursor-pointer hover:underline">Secure Checkout</span>
+                                    <img src="/api/placeholder/120/40" alt="Norton Secured" className="h-8 grayscale opacity-50" />
+                                </div>
+                            </div>
                         </div>
                     </div>
 
