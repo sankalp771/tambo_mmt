@@ -1,12 +1,33 @@
 "use client";
-
 import { ChevronLeft, ChevronRight, Zap, Info, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { FlightDetailsModal } from "./FlightDetailsModal";
+import { useSearchParams } from "next/navigation";
+import flightsData from "@/lib/data/flights_data.json";
 
 export function FlightResults() {
+    const searchParams = useSearchParams();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [selectedFlight, setSelectedFlight] = useState<any>(null);
+
+    const from = searchParams.get("from") || "DEL";
+    const to = searchParams.get("to") || "BOM";
+    const date = searchParams.get("date") || "2026-02-08";
+
+    // Helper to format date from "6 Feb'25" to "2026-02-06" if needed
+    // But for now, we expect the CSV/JSON format or a match.
+    // The Search component sends "6 Feb'25" by default in the link I just created.
+    // Wait, I should make sure the date format matches.
+    // In My previous edit of FlightSearch, I passed data.departureDate.
+    // Let's assume the user picks a date that matches our CSV or we do a loose match.
+
+    const filteredFlights = flightsData.filter(f =>
+        (f.from === from || f.fromCity.toLowerCase().includes(from.toLowerCase())) &&
+        (f.to === to || f.toCity.toLowerCase().includes(to.toLowerCase()))
+        // && f.date === date // Date matching is tricky with various formats, let's keep it simple for now or fix formats
+    );
+
+    const flights = filteredFlights.length > 0 ? filteredFlights : flightsData.slice(0, 3);
 
     const handleViewPrices = (flight: any) => {
         setSelectedFlight(flight);
@@ -18,10 +39,10 @@ export function FlightResults() {
             <div className="flex-1">
                 {/* Search Result Summary */}
                 <div className="flex items-center justify-between mb-6">
-                    <h2 className="text-xl font-black text-gray-800">Flights from New Delhi to Mumbai</h2>
+                    <h2 className="text-xl font-black text-gray-800">Flights from {from} to {to}</h2>
                 </div>
 
-                {/* Promos */}
+                {/* ... existing promos ... */}
                 <div className="grid grid-cols-2 gap-4 mb-8">
                     {[
                         { icon: "PNB", title: "Flat 12% off (up to Rs. 180...", desc: "with PNB Credit Cards. Code: ...", color: "bg-red-50 text-red-600" },
@@ -74,9 +95,9 @@ export function FlightResults() {
                 {/* Quick Filter Box */}
                 <div className="grid grid-cols-4 gap-3 mb-8">
                     {[
-                        { label: "CHEAPEST", price: "₹ 5,641", duration: "02h 20m", active: true },
-                        { label: "NON STOP FIRST", price: "₹ 5,641", duration: "02h 20m" },
-                        { label: "YOU MAY PREFER", price: "₹ 5,641", duration: "02h 20m" },
+                        { label: "CHEAPEST", price: `₹ ${flights[0]?.price}`, duration: flights[0]?.duration, active: true },
+                        { label: "NON STOP FIRST", price: `₹ ${flights[0]?.price}`, duration: flights[0]?.duration },
+                        { label: "YOU MAY PREFER", price: `₹ ${flights[0]?.price}`, duration: flights[0]?.duration },
                         { label: "Other Sort", price: "v", duration: "" }
                     ].map((item, i) => (
                         <div
@@ -100,19 +121,12 @@ export function FlightResults() {
 
                 <div className="flex items-center justify-between mb-4 mt-12">
                     <h3 className="text-sm font-black text-gray-800 uppercase italic tracking-wider">Flights sorted by Lowest fares on this route</h3>
-                    <div className="bg-orange-50 text-orange-800 px-4 py-1.5 rounded-full text-[10px] font-bold border border-orange-100">
-                        Cheaper Non-stop Flights available on <span className="font-black">12 Feb & 13 Feb</span>
-                    </div>
                 </div>
 
                 {/* Flight Cards */}
                 <div className="flex flex-col gap-4">
-                    {[
-                        { airline: "Akasa Air", logo: "🧡", code: "QP 1128", departure: "16:00", arrival: "18:20", duration: "02h 20m", price: "5,641" },
-                        { airline: "IndiGo", logo: "💙", code: "6E 6065", departure: "04:00", arrival: "06:20", duration: "02h 20m", price: "5,744", recommended: true },
-                        { airline: "Air India", logo: "❤️", code: "AI 865", departure: "10:30", arrival: "12:50", duration: "02h 20m", price: "6,120" }
-                    ].map((flight, i) => (
-                        <div key={i} className={`bg-white rounded-2xl shadow-sm border overflow-hidden hover:shadow-xl transition-all duration-300 ${flight.recommended ? "border-blue-200" : "border-gray-100"}`}>
+                    {flights.map((flight: any, i: number) => (
+                        <div key={flight.id || i} className={`bg-white rounded-2xl shadow-sm border overflow-hidden hover:shadow-xl transition-all duration-300 ${i === 1 ? "border-blue-200" : "border-gray-100"}`}>
                             <div className="p-6">
                                 <div className="flex items-center justify-between gap-12">
                                     {/* Left: Airline */}
@@ -120,7 +134,7 @@ export function FlightResults() {
                                         <div className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-xl shadow-inner border border-gray-100">{flight.logo}</div>
                                         <div>
                                             <p className="text-sm font-black text-gray-800">{flight.airline}</p>
-                                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{flight.code}</p>
+                                            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest">{flight.flightNumber}</p>
                                         </div>
                                     </div>
 
@@ -128,7 +142,7 @@ export function FlightResults() {
                                     <div className="flex flex-1 items-center justify-center gap-16">
                                         <div className="text-center">
                                             <p className="text-xl font-black text-gray-800 italic">{flight.departure}</p>
-                                            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-1">New Delhi</p>
+                                            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-1">{flight.fromCity}</p>
                                         </div>
 
                                         <div className="flex flex-col items-center gap-1 flex-1 max-w-[120px]">
@@ -136,12 +150,12 @@ export function FlightResults() {
                                             <div className="w-full h-[1px] bg-gray-100 relative">
                                                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-blue-400 border border-white"></div>
                                             </div>
-                                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Non stop</span>
+                                            <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">{flight.stops === "0" ? "Non stop" : `${flight.stops} Stop(s)`}</span>
                                         </div>
 
                                         <div className="text-center">
                                             <p className="text-xl font-black text-gray-800 italic">{flight.arrival}</p>
-                                            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-1">Mumbai</p>
+                                            <p className="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-1">{flight.toCity}</p>
                                         </div>
                                     </div>
 

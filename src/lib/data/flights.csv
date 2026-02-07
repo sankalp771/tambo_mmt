@@ -1,0 +1,101 @@
+id,airline,flightNumber,from,fromCity,to,toCity,date,departure,arrival,duration,price,currency,stops,class,logo
+FL-101,IndiGo,6E-2134,DEL,Delhi,BOM,Mumbai,2026-02-08,06:00,08:15,2h 15m,5400,INR,0,Economy,💙
+FL-102,Air India,AI-865,DEL,Delhi,BOM,Mumbai,2026-02-08,09:30,11:45,2h 15m,6200,INR,0,Economy,❤️
+FL-103,Vistara,UK-981,DEL,Delhi,BOM,Mumbai,2026-02-08,12:15,14:30,2h 15m,7100,INR,0,Business,💜
+FL-104,SpiceJet,SG-123,BLR,Bangalore,DEL,Delhi,2026-02-08,18:45,21:30,2h 45m,4800,INR,0,Economy,❤️
+FL-105,Akasa Air,QP-1102,BOM,Mumbai,BLR,Bangalore,2026-02-08,07:20,09:10,1h 50m,3900,INR,0,Economy,🧡
+FL-106,IndiGo,6E-5321,DEL,Delhi,MAA,Chennai,2026-02-09,07:00,09:50,2h 50m,5100,INR,0,Economy,💙
+FL-107,Air India,AI-432,BOM,Mumbai,DEL,Delhi,2026-02-09,10:00,12:15,2h 15m,5900,INR,0,Economy,❤️
+FL-108,Vistara,UK-705,DEL,Delhi,CCU,Kolkata,2026-02-09,14:00,16:15,2h 15m,6800,INR,0,Economy,💜
+FL-109,IndiGo,6E-204,BOM,Mumbai,HYD,Hyderabad,2026-02-10,08:00,09:30,1h 30m,3200,INR,0,Economy,💙
+FL-110,SpiceJet,SG-871,DEL,Delhi,PNQ,Pune,2026-02-10,11:00,13:10,2h 10m,4500,INR,0,Economy,❤️
+FL-111,Akasa Air,QP-1402,BLR,Bangalore,BOM,Mumbai,2026-02-11,06:30,08:20,1h 50m,3800,INR,0,Economy,🧡
+FL-112,Air India,AI-101,DEL,Delhi,JFK,New York,2026-02-11,01:30,07:30,15h 30m,85000,INR,0,Business,❤️
+FL-113,IndiGo,6E-122,AMD,Ahmedabad,DEL,Delhi,2026-02-12,08:00,09:30,1h 30m,3500,INR,0,Economy,💙
+FL-114,Vistara,UK-812,DEL,Delhi,BLR,Bangalore,2026-02-12,17:00,19:45,2h 45m,6500,INR,0,Economy,💜
+FL-115,IndiGo,6E-445,CCU,Kolkata,MAA,Chennai,2026-02-13,09:00,11:30,2h 30m,4200,INR,0,Economy,💙
+FL-116,Air India,AI-678,BOM,Mumbai,AMD,Ahmedabad,2026-02-13,13:00,14:15,1h 15m,3100,INR,0,Economy,❤️
+FL-117,Vistara,UK-944,DEL,Delhi,GOI,Goa,2026-02-14,10:00,12:30,2h 30m,8200,INR,0,Economy,💜
+FL-118,IndiGo,6E-332,HYD,Hyderabad,DEL,Delhi,2026-02-14,15:00,17:15,2h 15m,4900,INR,0,Economy,💙
+FL-119,SpiceJet,SG-251,MAA,Chennai,BOM,Mumbai,2026-02-15,07:00,08:50,1h 50m,3900,INR,0,Economy,❤️
+FL-120,Akasa Air,QP-1201,DEL,Delhi,BLR,Bangalore,2026-02-15,20:00,22:45,2h 45m,4300,INR,0,Economy,🧡
+FL-121,IndiGo,6E-2135,BOM,Mumbai,DEL,Delhi,2026-02-16,07:00,09:15,2h 15m,5500,INR,0,Economy,💙
+FL-122,Air India,AI-866,BOM,Mumbai,DEL,Delhi,2026-02-16,10:30,12:45,2h 15m,6300,INR,0,Economy,❤️
+FL-123,Vistara,UK-982,BOM,Mumbai,DEL,Delhi,2026-02-16,13:15,15:30,2h 15m,7200,INR,0,Business,💜
+FL-124,SpiceJet,SG-124,DEL,Delhi,BLR,Bangalore,2026-02-16,19:45,22:30,2h 45m,4900,INR,0,Economy,❤️
+FL-125,Akasa Air,QP-1103,BLR,Bangalore,BOM,Mumbai,2026-02-16,08:20,10:10,1h 50m,4000,INR,0,Economy,🧡
+FL-126,IndiGo,6E-5322,MAA,Chennai,DEL,Delhi,2026-02-17,08:00,10:50,2h 50m,5200,INR,0,Economy,💙
+FL-127,Air India,AI-433,DEL,Delhi,BOM,Mumbai,2026-02-17,11:00,13:15,2h 15m,6000,INR,0,Economy,❤️
+FL-128,Vistara,UK-706,CCU,Kolkata,DEL,Delhi,2026-02-17,15:00,17:15,2h 15m,6900,INR,0,Economy,💜
+FL-129,IndiGo,6E-205,HYD,Hyderabad,BOM,Mumbai,2026-02-18,09:00,10:30,1h 30m,3300,INR,0,Economy,💙
+FL-130,SpiceJet,SG-872,PNQ,Pune,DEL,Delhi,2026-02-18,12:00,14:10,2h 10m,4600,INR,0,Economy,❤️
+FL-131,Akasa Air,QP-1403,BOM,Mumbai,BLR,Bangalore,2026-02-19,07:30,09:20,1h 50m,3900,INR,0,Economy,🧡
+FL-132,Air India,AI-102,JFK,New York,DEL,Delhi,2026-02-19,10:30,11:30,15h 00m,86000,INR,0,Business,❤️
+FL-133,IndiGo,6E-123,DEL,Delhi,AMD,Ahmedabad,2026-02-20,09:00,10:30,1h 30m,3600,INR,0,Economy,💙
+FL-134,Vistara,UK-813,BLR,Bangalore,DEL,Delhi,2026-02-20,18:00,20:45,2h 45m,6600,INR,0,Economy,💜
+FL-135,IndiGo,6E-446,MAA,Chennai,CCU,Kolkata,2026-02-21,10:00,12:30,2h 30m,4300,INR,0,Economy,💙
+FL-136,Air India,AI-679,AMD,Ahmedabad,BOM,Mumbai,2026-02-21,14:00,15:15,1h 15m,3200,INR,0,Economy,❤️
+FL-137,Vistara,UK-945,GOI,Goa,DEL,Delhi,2026-02-22,11:00,13:30,2h 30m,8300,INR,0,Economy,💜
+FL-138,IndiGo,6E-333,DEL,Delhi,HYD,Hyderabad,2026-02-22,16:00,18:15,2h 15m,5000,INR,0,Economy,💙
+FL-139,SpiceJet,SG-252,BOM,Mumbai,MAA,Chennai,2026-02-23,08:00,09:50,1h 50m,4000,INR,0,Economy,❤️
+FL-140,Akasa Air,QP-1202,BLR,Bangalore,DEL,Delhi,2026-02-23,21:00,23:45,2h 45m,4400,INR,0,Economy,🧡
+FL-141,IndiGo,6E-2136,DEL,Delhi,BOM,Mumbai,2026-02-24,06:30,08:45,2h 15m,5600,INR,0,Economy,💙
+FL-142,Air India,AI-867,DEL,Delhi,BOM,Mumbai,2026-02-24,10:00,12:15,2h 15m,6400,INR,0,Economy,❤️
+FL-143,Vistara,UK-983,DEL,Delhi,BOM,Mumbai,2026-02-24,14:00,16:15,2h 15m,7300,INR,0,Business,💜
+FL-144,SpiceJet,SG-125,BLR,Bangalore,DEL,Delhi,2026-02-25,19:15,22:00,2h 45m,5000,INR,0,Economy,❤️
+FL-145,Akasa Air,QP-1104,BOM,Mumbai,BLR,Bangalore,2026-02-25,09:00,10:50,1h 50m,4100,INR,0,Economy,🧡
+FL-146,IndiGo,6E-5323,DEL,Delhi,MAA,Chennai,2026-02-26,09:00,11:50,2h 50m,5300,INR,0,Economy,💙
+FL-147,Air India,AI-434,BOM,Mumbai,DEL,Delhi,2026-02-26,12:00,14:15,2h 15m,6100,INR,0,Economy,❤️
+FL-148,Vistara,UK-707,DEL,Delhi,CCU,Kolkata,2026-02-26,16:00,18:15,2h 15m,7000,INR,0,Economy,💜
+FL-149,IndiGo,6E-206,BOM,Mumbai,HYD,Hyderabad,2026-02-27,10:00,11:30,1h 30m,3400,INR,0,Economy,💙
+FL-150,SpiceJet,SG-873,DEL,Delhi,PNQ,Pune,2026-02-27,13:00,15:10,2h 10m,4700,INR,0,Economy,❤️
+FL-151,Akasa Air,QP-1404,BLR,Bangalore,BOM,Mumbai,2026-02-28,09:30,11:20,1h 50m,4200,INR,0,Economy,🧡
+FL-152,Air India,AI-103,DEL,Delhi,BOM,Mumbai,2026-02-28,02:00,04:15,2h 15m,6500,INR,0,Economy,❤️
+FL-153,IndiGo,6E-124,AMD,Ahmedabad,DEL,Delhi,2026-02-28,10:00,11:30,1h 30m,3700,INR,0,Economy,💙
+FL-154,Vistara,UK-814,DEL,Delhi,BLR,Bangalore,2026-02-28,19:00,21:45,2h 45m,6700,INR,0,Economy,💜
+FL-155,IndiGo,6E-447,CCU,Kolkata,MAA,Chennai,2026-02-28,11:00,13:30,2h 30m,4400,INR,0,Economy,💙
+FL-156,IndiGo,6E-2137,DEL,Delhi,BOM,Mumbai,2026-02-08,18:00,20:15,2h 15m,5800,INR,0,Economy,💙
+FL-157,Air India,AI-868,DEL,Delhi,BOM,Mumbai,2026-02-08,21:00,23:15,2h 15m,6000,INR,0,Economy,❤️
+FL-158,IndiGo,6E-448,DEL,Delhi,BOM,Mumbai,2026-02-09,15:30,17:45,2h 15m,5200,INR,0,Economy,💙
+FL-159,Vistara,UK-984,DEL,Delhi,BOM,Mumbai,2026-02-09,18:15,20:30,2h 15m,7500,INR,0,Business,💜
+FL-160,SpiceJet,SG-126,DEL,Delhi,BOM,Mumbai,2026-02-10,06:00,08:15,2h 15m,4500,INR,0,Economy,❤️
+FL-161,IndiGo,6E-2138,DEL,Delhi,BOM,Mumbai,2026-02-10,12:00,14:15,2h 15m,5300,INR,0,Economy,💙
+FL-162,Air India,AI-869,DEL,Delhi,BOM,Mumbai,2026-02-11,08:00,10:15,2h 15m,6400,INR,0,Economy,❤️
+FL-163,Vistara,UK-985,DEL,Delhi,BOM,Mumbai,2026-02-11,14:30,16:45,2h 15m,7100,INR,0,Business,💜
+FL-164,IndiGo,6E-2139,DEL,Delhi,BOM,Mumbai,2026-02-12,07:00,09:15,2h 15m,5600,INR,0,Economy,💙
+FL-165,SpiceJet,SG-127,DEL,Delhi,BOM,Mumbai,2026-02-12,19:00,21:15,2h 15m,4800,INR,0,Economy,❤️
+FL-166,Air India,AI-870,DEL,Delhi,BOM,Mumbai,2026-02-13,10:00,12:15,2h 15m,6200,INR,0,Economy,❤️
+FL-167,Vistara,UK-986,DEL,Delhi,BOM,Mumbai,2026-02-13,16:00,18:15,2h 15m,7200,INR,0,Business,💜
+FL-168,IndiGo,6E-2140,DEL,Delhi,BOM,Mumbai,2026-02-14,08:30,10:45,2h 15m,5900,INR,0,Economy,💙
+FL-169,Akasa Air,QP-1105,DEL,Delhi,BOM,Mumbai,2026-02-14,21:00,23:15,2h 15m,5100,INR,0,Economy,🧡
+FL-170,Air India,AI-871,DEL,Delhi,BOM,Mumbai,2026-02-15,09:00,11:15,2h 15m,6500,INR,0,Economy,❤️
+FL-171,Vistara,UK-987,DEL,Delhi,BOM,Mumbai,2026-02-15,15:00,17:15,2h 15m,7400,INR,0,Business,💜
+FL-172,IndiGo,6E-2141,DEL,Delhi,BOM,Mumbai,2026-02-16,06:00,08:15,2h 15m,5400,INR,0,Economy,💙
+FL-173,SpiceJet,SG-128,DEL,Delhi,BOM,Mumbai,2026-02-16,20:00,22:15,2h 15m,4700,INR,0,Economy,❤️
+FL-174,Air India,AI-872,DEL,Delhi,BOM,Mumbai,2026-02-17,08:00,10:15,2h 15m,6300,INR,0,Economy,❤️
+FL-175,Vistara,UK-988,DEL,Delhi,BOM,Mumbai,2026-02-17,14:00,16:15,2h 15m,7100,INR,0,Business,💜
+FL-176,IndiGo,6E-2142,DEL,Delhi,BOM,Mumbai,2026-02-18,07:30,09:45,2h 15m,5500,INR,0,Economy,💙
+FL-177,Akasa Air,QP-1106,DEL,Delhi,BOM,Mumbai,2026-02-18,18:00,20:15,2h 15m,5000,INR,0,Economy,🧡
+FL-178,Air India,AI-873,DEL,Delhi,BOM,Mumbai,2026-02-19,09:30,11:45,2h 15m,6600,INR,0,Economy,❤️
+FL-179,Vistara,UK-989,DEL,Delhi,BOM,Mumbai,2026-02-19,15:30,17:45,2h 15m,7500,INR,0,Business,💜
+FL-180,IndiGo,6E-2143,DEL,Delhi,BOM,Mumbai,2026-02-20,06:30,08:45,2h 15m,5600,INR,0,Economy,💙
+FL-181,SpiceJet,SG-129,DEL,Delhi,BOM,Mumbai,2026-02-20,21:00,23:15,2h 15m,4900,INR,0,Economy,❤️
+FL-182,Air India,AI-874,DEL,Delhi,BOM,Mumbai,2026-02-21,11:00,13:15,2h 15m,6400,INR,0,Economy,❤️
+FL-183,Vistara,UK-990,DEL,Delhi,BOM,Mumbai,2026-02-21,17:00,19:15,2h 15m,7600,INR,0,Business,💜
+FL-184,IndiGo,6E-2144,DEL,Delhi,BOM,Mumbai,2026-02-22,08:00,10:15,2h 15m,5800,INR,0,Economy,💙
+FL-185,Akasa Air,QP-1107,DEL,Delhi,BOM,Mumbai,2026-02-22,20:00,22:15,2h 15m,5200,INR,0,Economy,🧡
+FL-186,Air India,AI-875,DEL,Delhi,BOM,Mumbai,2026-02-23,10:00,12:15,2h 15m,6500,INR,0,Economy,❤️
+FL-187,Vistara,UK-991,DEL,Delhi,BOM,Mumbai,2026-02-23,16:00,18:15,2h 15m,7400,INR,0,Business,💜
+FL-188,IndiGo,6E-2145,DEL,Delhi,BOM,Mumbai,2026-02-24,07:00,09:15,2h 15m,5700,INR,0,Economy,💙
+FL-189,SpiceJet,SG-130,DEL,Delhi,BOM,Mumbai,2026-02-24,19:00,21:15,2h 15m,5000,INR,0,Economy,❤️
+FL-190,Air India,AI-876,DEL,Delhi,BOM,Mumbai,2026-02-25,09:00,11:15,2h 15m,6300,INR,0,Economy,❤️
+FL-191,Vistara,UK-992,DEL,Delhi,BOM,Mumbai,2026-02-25,15:00,17:15,2h 15m,7200,INR,0,Business,💜
+FL-192,IndiGo,6E-2146,DEL,Delhi,BOM,Mumbai,2026-02-26,08:30,10:45,2h 15m,5900,INR,0,Economy,💙
+FL-193,Akasa Air,QP-1108,DEL,Delhi,BOM,Mumbai,2026-02-26,21:30,23:45,2h 15m,5300,INR,0,Economy,🧡
+FL-194,Air India,AI-877,DEL,Delhi,BOM,Mumbai,2026-02-27,06:00,08:15,2h 15m,6100,INR,0,Economy,❤️
+FL-195,Vistara,UK-993,DEL,Delhi,BOM,Mumbai,2026-02-27,12:00,14:15,2h 15m,7000,INR,0,Business,💜
+FL-196,IndiGo,6E-2147,DEL,Delhi,BOM,Mumbai,2026-02-28,07:30,09:45,2h 15m,5800,INR,0,Economy,💙
+FL-197,SpiceJet,SG-131,DEL,Delhi,BOM,Mumbai,2026-02-28,20:00,22:15,2h 15m,5100,INR,0,Economy,❤️
+FL-198,Air India,AI-878,DEL,Delhi,BOM,Mumbai,2026-02-28,14:30,16:45,2h 15m,6400,INR,0,Economy,❤️
+FL-199,Vistara,UK-994,DEL,Delhi,BOM,Mumbai,2026-02-28,18:30,20:45,2h 15m,7500,INR,0,Business,💜
+FL-200,IndiGo,6E-2148,DEL,Delhi,BOM,Mumbai,2026-02-28,10:00,12:15,2h 15m,5900,INR,0,Economy,💙

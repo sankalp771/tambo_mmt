@@ -7,6 +7,9 @@ interface FlightDetailsModalProps {
     isOpen: boolean;
     onClose: () => void;
     flight: {
+        id?: string;
+        fromCity?: string;
+        toCity?: string;
         airline: string;
         logo: string;
         code: string;
@@ -139,7 +142,7 @@ export function FlightDetailsModal({ isOpen, onClose, flight }: FlightDetailsMod
                                         </button>
                                     )}
                                     <Link
-                                        href="/checkout"
+                                        href={`/checkout?id=${flight.id || ''}&airline=${flight.airline}&price=${flight.price}&departure=${flight.departure}&arrival=${flight.arrival}&from=${flight.fromCity || ''}&to=${flight.toCity || ''}&logo=${flight.logo}`}
                                         className="flex-1 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full py-2.5 font-black uppercase text-[10px] tracking-wider text-center shadow-lg shadow-blue-100 hover:scale-105 active:scale-95 transition-all"
                                     >
                                         Book Now

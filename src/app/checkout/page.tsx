@@ -18,11 +18,27 @@ import {
     ThreadContentMessages
 } from "@/components/tambo/thread-content";
 
+import { useSearchParams } from "next/navigation";
+
 export default function CheckoutPage() {
     const [isChatOpen, setIsChatOpen] = useState(false);
     const [isReviewOpen, setIsReviewOpen] = useState(false);
     const router = useRouter();
+    const searchParams = useSearchParams();
 
+    // Get flight data from URL
+    const fromCity = searchParams.get("from") || "DEL";
+    const toCity = searchParams.get("to") || "BOM";
+    const airline = searchParams.get("airline") || "Akasa Air";
+    const price = searchParams.get("price") || "5,641";
+    const departure = searchParams.get("departure") || "16:00";
+    const arrival = searchParams.get("arrival") || "18:20";
+    const logo = searchParams.get("logo") || "🧡";
+    const flightId = searchParams.get("id") || "QP 1128";
+
+    // Calculate fare summary
+    const baseFare = parseInt(price.replace(/,/g, '')) - 859; // Simplified math
+    const totalAmount = price;
     return (
         <TamboProvider
             apiKey={process.env.NEXT_PUBLIC_TAMBO_API_KEY!}
@@ -95,7 +111,7 @@ export default function CheckoutPage() {
                             <div className="p-6">
                                 <div className="flex items-center justify-between mb-6">
                                     <div className="flex items-center gap-3">
-                                        <h2 className="text-xl font-black italic uppercase">New Delhi → Mumbai</h2>
+                                        <h2 className="text-xl font-black italic uppercase">{fromCity} → {toCity}</h2>
                                         <span className="bg-green-50 text-green-700 text-[10px] font-black px-2 py-0.5 rounded uppercase border border-green-100">Cancellation Fees Apply</span>
                                     </div>
                                     <button className="text-[10px] font-black text-blue-500 uppercase hover:underline">View Fare Rules</button>
@@ -108,28 +124,28 @@ export default function CheckoutPage() {
 
                                 <div className="flex items-start gap-12">
                                     <div className="flex flex-col items-center gap-2 w-24">
-                                        <div className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-xl shadow-inner uppercase">Akasa</div>
-                                        <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest text-center">Akasa Air <br />QP 1128</p>
+                                        <div className="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-xl shadow-inner uppercase">{logo}</div>
+                                        <p className="text-[9px] font-black text-gray-400 uppercase tracking-widest text-center">{airline} <br /> {flightId}</p>
                                         <span className="text-[8px] bg-gray-100 px-1.5 py-0.5 rounded text-gray-500 font-black">Boeing 737</span>
                                     </div>
 
                                     <div className="flex-1 flex items-start gap-8">
                                         <div className="flex flex-col items-center">
-                                            <span className="text-xl font-black italic">16:00</span>
+                                            <span className="text-xl font-black italic">{departure}</span>
                                             <div className="w-2 h-2 rounded-full border-2 border-gray-300 mt-2 bg-white"></div>
                                             <div className="w-[1px] h-20 bg-gray-100 bg-[repeating-linear-gradient(to_bottom,transparent,transparent_4px,#e2e8f0_4px,#e2e8f0_8px)]"></div>
                                             <div className="w-2 h-2 rounded-full border-2 border-gray-300 bg-white"></div>
-                                            <span className="text-xl font-black italic mt-2">18:20</span>
+                                            <span className="text-xl font-black italic mt-2">{arrival}</span>
                                         </div>
 
                                         <div className="flex flex-col gap-10 pt-0.5">
                                             <div>
-                                                <p className="text-sm font-black italic">New Delhi</p>
+                                                <p className="text-sm font-black italic">{fromCity}</p>
                                                 <p className="text-[10px] text-gray-400 font-bold">Indira Gandhi International Airport, Terminal T1</p>
                                                 <p className="text-[10px] text-gray-400 font-bold mt-1 uppercase tracking-widest">2h 20m</p>
                                             </div>
                                             <div className="mt-4">
-                                                <p className="text-sm font-black italic">Mumbai</p>
+                                                <p className="text-sm font-black italic">{toCity}</p>
                                                 <p className="text-[10px] text-gray-400 font-bold">Chhatrapati Shivaji International Airport, Terminal T1</p>
                                             </div>
                                         </div>
@@ -636,26 +652,26 @@ export default function CheckoutPage() {
                                             <Plus className="w-4 h-4 text-gray-300 group-hover:text-blue-500 transition-colors" />
                                             <span className="text-xs font-black text-gray-600 uppercase tracking-widest">Base Fare</span>
                                         </div>
-                                        <span className="text-xs font-black tabular-nums">₹ 5,612</span>
+                                        <span className="text-xs font-black tabular-nums">₹ {baseFare}</span>
                                     </div>
                                     <div className="flex items-center justify-between group cursor-pointer mb-2">
                                         <div className="flex items-center gap-2">
                                             <Plus className="w-4 h-4 text-gray-300 group-hover:text-blue-500 transition-colors" />
                                             <span className="text-xs font-black text-gray-600 uppercase tracking-widest">Taxes and Surcharges</span>
                                         </div>
-                                        <span className="text-xs font-black tabular-nums">₹ 888</span>
+                                        <span className="text-xs font-black tabular-nums">₹ 859</span>
                                     </div>
                                     <div className="flex items-center justify-between group cursor-pointer pt-4 border-t border-gray-50 mb-2">
                                         <div className="flex items-center gap-2">
                                             <Plus className="w-4 h-4 text-gray-300 group-hover:text-blue-500 transition-colors" />
                                             <span className="text-xs font-black text-gray-600 uppercase tracking-widest">Discounts</span>
                                         </div>
-                                        <span className="text-xs font-black tabular-nums text-green-600">- ₹ 227</span>
+                                        <span className="text-xs font-black tabular-nums text-green-600">- ₹ 0</span>
                                     </div>
 
                                     <div className="flex items-center justify-between py-5 border-t-2 border-dashed border-gray-100 mt-2">
                                         <span className="text-lg font-black italic uppercase tracking-wider">Total Amount</span>
-                                        <span className="text-xl font-black italic tabular-nums">₹ 6,273</span>
+                                        <span className="text-xl font-black italic tabular-nums">₹ {totalAmount}</span>
                                     </div>
                                 </div>
 
