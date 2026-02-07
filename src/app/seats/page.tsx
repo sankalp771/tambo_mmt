@@ -2,7 +2,7 @@
 
 import { TamboProvider } from "@tambo-ai/react";
 import { components, tools } from "@/lib/tambo";
-import { MessageSquare, X, ChevronDown, ChevronRight, Info, Plus, Tag, Check, Minus, Users, ArrowRight } from "lucide-react";
+import { MessageSquare, X, ChevronDown, ChevronRight, Info, Plus, Tag, Check, Minus, Users, ArrowRight, Car, MapPin, Calendar, Clock, Star, Zap, Fuel, ShieldCheck } from "lucide-react";
 import React, { useState } from "react";
 import Link from "next/link";
 import {
@@ -20,6 +20,8 @@ import {
 export default function SeatsPage() {
     const [isChatOpen, setIsChatOpen] = useState(false);
     const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
+    const [activeCabTab, setActiveCabTab] = useState<'to_airport' | 'from_airport'>('to_airport');
+    const [selectedCabsCount, setSelectedCabsCount] = useState(0);
 
     const toggleSeat = (id: string) => {
         if (selectedSeats.includes(id)) {
@@ -256,14 +258,177 @@ export default function SeatsPage() {
                                 </div>
                             </div>
                         </div>
+                        {/* Cabs Section */}
+                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden mt-6 mb-8">
+                            <div className="p-6 border-b flex items-center justify-between">
+                                <div className="flex items-center gap-3">
+                                    <Car className="w-6 h-6 text-gray-800" />
+                                    <h3 className="text-xl font-black italic uppercase tracking-tighter">Cabs</h3>
+                                    <span className="bg-purple-100 text-purple-600 text-[8px] font-black uppercase px-2 py-0.5 rounded-full tracking-wider">new</span>
+                                </div>
+                            </div>
+
+                            <div className="p-8">
+                                <div className="flex items-center justify-between mb-8 border-b pb-4">
+                                    <div className="flex items-center gap-2">
+                                        <span className="text-sm font-black italic uppercase text-gray-800">New Delhi</span>
+                                        <ArrowRight className="w-4 h-4 text-gray-400" />
+                                        <span className="text-[10px] font-black text-orange-500 uppercase tracking-widest italic">{selectedCabsCount} of 2 cab selected</span>
+                                    </div>
+                                    <span className="text-sm font-black italic uppercase text-gray-800">Mumbai</span>
+                                </div>
+
+                                <div className="flex gap-8 items-start">
+                                    {/* Left Column: Booking Form */}
+                                    <div className="w-[300px] flex-shrink-0">
+                                        <div className="bg-[#f2f8ff] rounded-2xl p-6 border border-blue-100 shadow-sm relative overflow-hidden group">
+                                            <div className="absolute top-0 right-0 w-24 h-24 bg-blue-400/5 rounded-full blur-2xl -mr-8 -mt-8"></div>
+
+                                            <div className="flex items-center justify-between mb-6">
+                                                <div className="flex flex-col">
+                                                    <h4 className="text-[12px] font-black italic uppercase tracking-wider text-gray-800">
+                                                        {activeCabTab === 'to_airport' ? 'Ride Guarantee' : 'Flexi Airport Pickup'}
+                                                    </h4>
+                                                    <p className="text-[9px] font-bold text-gray-500 leading-tight mt-1">Get a refund for a flight missed due to a cab delay or no-show <span className="text-blue-500 cursor-pointer">View Policy</span></p>
+                                                </div>
+                                                <ShieldCheck className="w-6 h-6 text-indigo-500 opacity-40 group-hover:scale-110 transition-transform" />
+                                            </div>
+
+                                            <div className="flex p-1 bg-white rounded-xl border border-blue-50 mb-6 shadow-inner">
+                                                <button
+                                                    onClick={() => setActiveCabTab('to_airport')}
+                                                    className={`flex-1 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${activeCabTab === 'to_airport' ? 'bg-blue-500 text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
+                                                >
+                                                    To DEL airport
+                                                </button>
+                                                <button
+                                                    onClick={() => setActiveCabTab('from_airport')}
+                                                    className={`flex-1 py-2.5 rounded-lg text-[10px] font-black uppercase tracking-widest transition-all ${activeCabTab === 'from_airport' ? 'bg-blue-500 text-white shadow-md' : 'text-gray-400 hover:text-gray-600'}`}
+                                                >
+                                                    From BOM airport
+                                                </button>
+                                            </div>
+
+                                            <div className="flex flex-col gap-4 mb-6">
+                                                <div className="bg-white border border-gray-100 rounded-xl p-3.5 flex items-center gap-3 group/input hover:border-blue-200 transition-all cursor-pointer shadow-sm">
+                                                    <MapPin className="w-4 h-4 text-gray-300 group-hover/input:text-blue-500 transition-colors" />
+                                                    <div className="flex flex-col">
+                                                        <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest leading-none mb-1">Pick up from</span>
+                                                        <span className="text-[11px] font-black text-gray-800 uppercase italic leading-none">{activeCabTab === 'to_airport' ? 'Delhi' : 'Mumbai'}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div className="bg-white border border-gray-100 rounded-xl p-3.5 flex items-center gap-3 shadow-sm opacity-60">
+                                                    <Users className="w-4 h-4 text-gray-300" />
+                                                    <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest italic">{activeCabTab === 'to_airport' ? 'Terminal 1 Delhi Airport, IGI' : 'Terminal 2, Chhatrapati Shiva...'}</span>
+                                                </div>
+
+                                                <div className="flex gap-2">
+                                                    <div className="flex-1 bg-white border border-gray-100 rounded-xl p-3.5 flex items-center gap-3 shadow-sm">
+                                                        <Calendar className="w-4 h-4 text-gray-300" />
+                                                        <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest italic pt-0.5">Sat, 07 Feb</span>
+                                                    </div>
+                                                    <div className="flex-1 bg-white border border-gray-100 rounded-xl p-3.5 flex items-center gap-3 shadow-sm">
+                                                        <Clock className="w-4 h-4 text-gray-300" />
+                                                        <span className="text-[10px] font-black text-gray-500 uppercase tracking-widest italic pt-0.5">05:00 PM</span>
+                                                    </div>
+                                                </div>
+
+                                                <p className="text-[9px] font-black text-gray-400 leading-tight italic px-1">Your flight departs from T1, DEL airport, 08:00 PM</p>
+                                            </div>
+
+                                            <button className="w-full border-2 border-gray-100 bg-white rounded-xl py-4 font-black uppercase text-[11px] tracking-[0.2em] text-gray-400 hover:border-blue-400 hover:text-blue-500 hover:shadow-lg transition-all active:scale-95 shadow-sm">
+                                                Search
+                                            </button>
+
+                                            <div className="mt-6 flex items-start gap-2 px-1">
+                                                <span className="text-xl">☀️</span>
+                                                <p className="text-[9px] font-bold text-gray-500 leading-relaxed italic">Rush hour in {activeCabTab === 'to_airport' ? 'New Delhi' : 'Mumbai'}? Book your cab now to avoid delays</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    {/* Right Column: Cab List */}
+                                    <div className="flex-1">
+                                        <div className="flex items-center justify-between mb-4 px-2">
+                                            <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest italic">Cab rates for approx 15 km distance and 15 minutes travel time</p>
+                                        </div>
+
+                                        <div className="h-[600px] overflow-y-auto pr-3 custom-scrollbar flex flex-col gap-4">
+                                            {[
+                                                { id: 1, name: "Swift Dzire", type: "CNG", rating: 4.3, seats: 4, price: activeCabTab === 'to_airport' ? "404" : "750", rec: true, fuel: "CNG", desc: "Comfortable Sedan", perKm: 23 },
+                                                { id: 2, name: "Mg Zs", type: "Electric", rating: "4.8", seats: 4, price: activeCabTab === 'to_airport' ? "499" : "737", fuel: "Electric", desc: "Electric & Sustainable", perKm: 25 },
+                                                { id: 3, name: "Wagonr, Swift or similar", type: "CNG", rating: 4.2, seats: 4, price: activeCabTab === 'to_airport' ? "637" : "783", fuel: "CNG", desc: "Pocket Friendly", perKm: 20 },
+                                                { id: 4, name: "Maruti Suzuki Ertiga", type: "CNG", rating: 4.5, seats: 6, price: activeCabTab === 'to_airport' ? "1225" : "1107", fuel: "CNG", desc: "Comfortable SUV", perKm: 35 },
+                                                { id: 5, name: "Byd E6", type: activeCabTab === 'to_airport' ? "Electric" : "Diesel", rating: 4.9, seats: 4, price: activeCabTab === 'to_airport' ? "1460" : "1103", fuel: activeCabTab === 'to_airport' ? "Electric" : "Diesel", desc: "Electric & Sustainable", perKm: 30 },
+                                                { id: 6, name: "Tigor or similar", type: "Electric", rating: 4.0, seats: 4, price: activeCabTab === 'to_airport' ? "1752" : "1151", fuel: "Electric", desc: "Electric & Sustainable", perKm: 27 },
+                                            ].map((cab) => (
+                                                <div key={cab.id} className="bg-white rounded-2xl border border-gray-100 p-5 shadow-sm hover:border-blue-200 hover:shadow-md transition-all group/cab relative">
+                                                    {cab.rec && (
+                                                        <span className="absolute top-3 left-3 bg-cyan-400 text-white text-[8px] font-black px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm z-10">Recommended</span>
+                                                    )}
+
+                                                    <div className="flex items-start gap-6">
+                                                        <div className="flex flex-col items-center gap-2">
+                                                            <div className="w-24 h-16 bg-gray-50 rounded-xl flex items-center justify-center group-hover/cab:scale-110 transition-transform">
+                                                                <div className="text-4xl text-gray-300">🚗</div>
+                                                            </div>
+                                                            <div className={`text-[8px] font-black uppercase tracking-widest px-2 py-0.5 rounded w-full text-center text-white ${cab.fuel === 'Electric' ? 'bg-blue-500' : cab.fuel === 'CNG' ? 'bg-emerald-500' : cab.fuel === 'Diesel' ? 'bg-orange-500' : 'bg-gray-500'}`}>
+                                                                {cab.fuel}
+                                                            </div>
+                                                        </div>
+
+                                                        <div className="flex-1 flex flex-col pt-1">
+                                                            <div className="flex items-center justify-between mb-3">
+                                                                <div className="flex flex-col gap-1">
+                                                                    <div className="flex items-center gap-2">
+                                                                        <div className="bg-emerald-500 text-white text-[8px] font-black px-1.5 py-0.5 rounded flex items-center gap-0.5">
+                                                                            <Star className="w-2 h-2 fill-current" />
+                                                                            {cab.rating}
+                                                                        </div>
+                                                                        <h4 className="text-[13px] font-black tracking-tight text-gray-800">{cab.name}</h4>
+                                                                    </div>
+                                                                    <div className="bg-cyan-50 text-cyan-700 text-[10px] font-black px-2 py-0.5 rounded-full w-fit uppercase italic tracking-tighter">
+                                                                        {cab.desc}
+                                                                    </div>
+                                                                </div>
+                                                                <div className="flex flex-col items-end">
+                                                                    <span className="text-[14px] font-black tabular-nums text-gray-900">₹{cab.price}</span>
+                                                                    <span className="text-[8px] font-black text-gray-400 uppercase tracking-widest">All Inclusive</span>
+                                                                </div>
+                                                            </div>
+
+                                                            <div className="flex items-center justify-between mt-auto">
+                                                                <div className="flex items-center gap-4 text-[9px] font-bold text-gray-400 italic">
+                                                                    <span>{cab.seats} Seats</span>
+                                                                    <span className="w-1 h-1 bg-gray-300 rounded-full"></span>
+                                                                    <span>₹{cab.perKm}/km after 15 km(s)</span>
+                                                                </div>
+                                                                <button
+                                                                    onClick={() => setSelectedCabsCount(prev => Math.min(2, prev + 1))}
+                                                                    className="border border-gray-100 px-6 py-2 rounded-lg text-[10px] font-black uppercase tracking-widest text-gray-400 hover:border-blue-500 hover:text-blue-500 hover:bg-blue-50 transition-all active:scale-95 shadow-sm"
+                                                                >
+                                                                    Add
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ))}
+                                            <div className="h-10"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         {/* Pagination Buttons */}
-                        <div className="flex items-center justify-between py-6">
-                            <button className="bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-full py-4 px-16 font-black uppercase text-sm tracking-widest shadow-[0_10px_20px_-5px_rgba(37,99,235,0.4)] hover:scale-105 active:scale-95 transition-all">
+                        <div className="flex items-center justify-between py-10 pt-4 mt-8 border-t border-gray-100">
+                            <button className="bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-full py-4 px-16 font-black uppercase text-sm tracking-[0.2em] shadow-[0_10px_30px_-5px_rgba(37,99,235,0.4)] hover:scale-105 hover:shadow-blue-200 active:scale-95 transition-all">
                                 Continue
                             </button>
-                            <button className="text-[11px] font-black text-blue-500 uppercase tracking-widest hover:underline px-8 italic">
-                                Skip to cabs
+                            <button className="text-[11px] font-black text-blue-500 uppercase tracking-[0.15em] hover:underline px-8 italic">
+                                Skip to add-ons
                             </button>
                         </div>
                     </div>
