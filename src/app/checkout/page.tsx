@@ -4,6 +4,8 @@ import { TamboProvider } from "@tambo-ai/react";
 import { components, tools } from "@/lib/tambo";
 import { MessageSquare, X, ChevronDown, ChevronRight, Info, Plus, Tag, Check, Minus, Users } from "lucide-react";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { ReviewDetailsModal } from "@/components/mmt/ReviewDetailsModal";
 import {
     MessageInput,
     MessageInputSubmitButton,
@@ -18,6 +20,8 @@ import {
 
 export default function CheckoutPage() {
     const [isChatOpen, setIsChatOpen] = useState(false);
+    const [isReviewOpen, setIsReviewOpen] = useState(false);
+    const router = useRouter();
 
     return (
         <TamboProvider
@@ -27,6 +31,21 @@ export default function CheckoutPage() {
             tamboUrl={process.env.NEXT_PUBLIC_TAMBO_URL}
         >
             <div className="min-h-screen bg-gray-50 font-sans text-gray-900 overflow-x-hidden">
+                <style jsx global>{`
+                    .custom-scrollbar::-webkit-scrollbar {
+                        width: 6px;
+                    }
+                    .custom-scrollbar::-webkit-scrollbar-track {
+                        background: transparent;
+                    }
+                    .custom-scrollbar::-webkit-scrollbar-thumb {
+                        background: #d1d5db;
+                        border-radius: 10px;
+                    }
+                    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                        background: #9ca3af;
+                    }
+                `}</style>
                 {/* Nav Header */}
                 <nav className="bg-white px-8 py-3 flex items-center justify-between border-b sticky top-0 z-[70]">
                     <div className="flex items-center gap-1.5 cursor-pointer">
@@ -581,7 +600,10 @@ export default function CheckoutPage() {
 
                         {/* Final Continue Button & Collapse Sections */}
                         <div className="flex flex-col gap-4">
-                            <button className="w-44 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-full py-4 px-10 font-black uppercase text-sm tracking-widest shadow-[0_10px_20px_-5px_rgba(37,99,235,0.4)] hover:scale-110 active:scale-95 transition-all">
+                            <button
+                                onClick={() => setIsReviewOpen(true)}
+                                className="w-44 bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-full py-4 px-10 font-black uppercase text-sm tracking-widest shadow-[0_10px_20px_-5px_rgba(37,99,235,0.4)] hover:scale-110 active:scale-95 transition-all"
+                            >
                                 Continue
                             </button>
 
@@ -603,9 +625,9 @@ export default function CheckoutPage() {
                     </div>
 
                     {/* Right Column */}
-                    <div className="w-[340px] flex flex-col gap-6">
+                    <div className="w-[340px] sticky top-24 max-h-[calc(100vh-100px)] overflow-y-auto pr-3 custom-scrollbar">
                         {/* Fare Summary */}
-                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden sticky top-24">
+                        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                             <div className="p-6">
                                 <h3 className="text-xl font-black italic tracking-tighter mb-6">Fare Summary</h3>
                                 <div className="flex flex-col gap-4">
@@ -660,7 +682,7 @@ export default function CheckoutPage() {
                                     <button className="bg-white border text-gray-400 rounded-md py-2 text-[10px] font-black uppercase italic">Add ons</button>
                                 </div>
 
-                                <div className="flex flex-col gap-4 max-h-[400px] overflow-y-auto pr-1 scrollbar-hide">
+                                <div className="flex flex-col gap-4">
                                     <div className="bg-white border-2 border-[#0057ff] rounded-xl p-4 flex flex-col gap-3 shadow-md relative group">
                                         <div className="absolute -left-0.5 top-0 bottom-0 w-1 bg-[#0057ff] rounded-l-xl"></div>
                                         <div className="flex items-center justify-between">
@@ -768,6 +790,11 @@ export default function CheckoutPage() {
                     )}
                 </div>
             </div>
+            <ReviewDetailsModal
+                isOpen={isReviewOpen}
+                onClose={() => setIsReviewOpen(false)}
+                onConfirm={() => router.push('/seats')}
+            />
         </TamboProvider>
     );
 }
