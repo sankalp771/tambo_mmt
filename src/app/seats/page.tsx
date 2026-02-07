@@ -16,8 +16,10 @@ import {
     ThreadContent,
     ThreadContentMessages
 } from "@/components/tambo/thread-content";
+import { useRouter } from "next/navigation";
 
 export default function SeatsPage() {
+    const router = useRouter();
     const [isChatOpen, setIsChatOpen] = useState(false);
     const [selectedSeats, setSelectedSeats] = useState<string[]>([]);
     const [activeCabTab, setActiveCabTab] = useState<'to_airport' | 'from_airport'>('to_airport');
@@ -518,7 +520,10 @@ export default function SeatsPage() {
                             </label>
 
                             <div className="flex items-center justify-between">
-                                <button className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-full py-4 px-16 font-black uppercase text-sm tracking-[0.2em] shadow-[0_15px_30px_-8px_rgba(37,99,235,0.4)] hover:scale-110 active:scale-95 transition-all">
+                                <button
+                                    onClick={() => router.push('/payment')}
+                                    className="bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 text-white rounded-full py-4 px-16 font-black uppercase text-sm tracking-[0.2em] shadow-[0_15px_30px_-8px_rgba(37,99,235,0.4)] hover:scale-110 active:scale-95 transition-all"
+                                >
                                     PROCEED TO PAY
                                 </button>
                                 <div className="flex items-center gap-6">
