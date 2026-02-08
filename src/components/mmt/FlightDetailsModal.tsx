@@ -3,20 +3,12 @@
 import { X, Check, Minus, Info } from "lucide-react";
 import Link from "next/link";
 
+import { Flight } from "./FlightResults";
+
 interface FlightDetailsModalProps {
     isOpen: boolean;
     onClose: () => void;
-    flight: {
-        id?: string;
-        fromCity?: string;
-        toCity?: string;
-        airline: string;
-        logo: string;
-        code: string;
-        departure: string;
-        arrival: string;
-        price: string;
-    } | null;
+    flight: Flight | null;
 }
 
 export function FlightDetailsModal({ isOpen, onClose, flight }: FlightDetailsModalProps) {

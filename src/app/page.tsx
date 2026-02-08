@@ -57,7 +57,7 @@ export default function Home() {
               Your journey, <span className="text-blue-400">simply easier.</span>
             </h1>
             <p className="text-white/70 text-xl md:text-2xl font-medium max-w-3xl leading-relaxed">
-              MakeMyTrip platform powered by Tambo's <span className="text-blue-400/90 italic">cutting-edge</span> AI agents.
+              MakeMyTrip platform powered by Tambo&apos;s <span className="text-blue-400/90 italic">cutting-edge</span> AI agents.
               Discover destinations, book stays, and explore the world through a
               single, intelligent conversation.
             </p>
@@ -112,7 +112,7 @@ export default function Home() {
       {/* Mid-Section Tagline */}
       <div className="max-w-[1240px] mx-auto mt-28 mb-16 px-4 text-center animate-in fade-in slide-in-from-bottom-5 duration-1000 delay-300">
         <h2 className="text-gray-900 text-4xl md:text-5xl font-serif italic mb-6 leading-tight tracking-tight">
-          Don't just travel. <span className="text-blue-600">Discover yours.</span>
+          Don&apos;t just travel. <span className="text-blue-600">Discover yours.</span>
         </h2>
         <p className="text-gray-500 text-lg md:text-xl font-medium max-w-2xl mx-auto leading-relaxed opacity-70">
           Our intelligent agents sift through thousands of possibilities to find exactly what resonates with you.

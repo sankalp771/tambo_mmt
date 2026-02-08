@@ -232,8 +232,8 @@ function HotelResultsContent() {
                         key={s}
                         onClick={() => toggleStarRating(s)}
                         className={`px-3 py-2 border-2 rounded-lg text-xs font-black flex items-center justify-center gap-1 transition-all ${selectedStarRatings.includes(s)
-                            ? "border-blue-600 text-blue-600 bg-blue-50"
-                            : "border-gray-100 text-gray-500 bg-white shadow-sm hover:border-blue-300"
+                          ? "border-blue-600 text-blue-600 bg-blue-50"
+                          : "border-gray-100 text-gray-500 bg-white shadow-sm hover:border-blue-300"
                           }`}
                       >
                         {s} <Star className={`w-3 h-3 ${selectedStarRatings.includes(s) ? "fill-blue-600" : "fill-current"}`} />
@@ -250,8 +250,8 @@ function HotelResultsContent() {
                         key={rating}
                         onClick={() => setMinUserRating(minUserRating === rating ? null : rating)}
                         className={`w-full px-3 py-2 border-2 rounded-lg text-[11px] font-black flex items-center justify-between transition-all ${minUserRating === rating
-                            ? "border-blue-600 text-blue-600 bg-blue-50"
-                            : "border-gray-100 text-gray-500 bg-white shadow-sm hover:border-blue-300"
+                          ? "border-blue-600 text-blue-600 bg-blue-50"
+                          : "border-gray-100 text-gray-500 bg-white shadow-sm hover:border-blue-300"
                           }`}
                       >
                         <span>{rating}+ Rated</span>
@@ -458,7 +458,7 @@ function HotelResultsContent() {
           ) : (
             <div className="py-40 text-center space-y-4">
               <p className="text-4xl text-gray-900">🏜️</p>
-              <h3 className="text-2xl font-black text-gray-800 uppercase tracking-tighter">No properties found in "{city}"</h3>
+              <h3 className="text-2xl font-black text-gray-800 uppercase tracking-tighter">No properties found in &quot;{city}&quot;</h3>
               <p className="text-gray-500 font-bold uppercase tracking-widest text-xs">Try searching for Udaipur, Jaisalmer or Manali (from our dataset)</p>
             </div>
           )}

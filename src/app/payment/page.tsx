@@ -6,13 +6,13 @@ import {
     Fuel, ShieldCheck, ShieldPlus, Heart, Trees, Pencil, Wallet, CreditCard,
     Smartphone, Landmark, History, Gift, Shield, Download
 } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useBooking } from "@/context/BookingContext";
 import { TicketModal } from "@/components/mmt/TicketModal";
 
-export default function PaymentPage() {
+function PaymentContent() {
     const searchParams = useSearchParams();
     const { booking } = useBooking();
     const [isQRModalOpen, setIsQRModalOpen] = useState(false);
@@ -331,5 +331,15 @@ export default function PaymentPage() {
                 }}
             />
         </div>
+    );
+}
+
+export default function PaymentPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <div className="text-xl font-black italic animate-pulse text-blue-500 uppercase tracking-widest">Initialising Secure Payment...</div>
+        </div>}>
+            <PaymentContent />
+        </Suspense>
     );
 }

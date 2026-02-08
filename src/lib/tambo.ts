@@ -65,12 +65,12 @@ const searchFlights = defineTool({
       url.searchParams.set("date", input.date);
       window.history.pushState({}, '', url.toString());
     }
-    const results = flightsData.filter(f =>
+    const results = (flightsData as any[]).filter((f: any) =>
       matchesCity(input.from, f.from, f.fromCity) &&
       matchesCity(input.to, f.to, f.toCity) &&
       f.date === input.date
     );
-    return results.map(f => ({
+    return results.map((f: any) => ({
       id: f.id,
       airline: f.airline,
       price: `₹ ${parseInt(f.price).toLocaleString()}`,
@@ -123,7 +123,7 @@ const navigateToHotelCatalog = defineTool({
       if (input.starRating) params.set("starRating", String(input.starRating));
       if (input.priceRange) params.set("priceRange", input.priceRange);
       if (input.minUserRating) params.set("minUserRating", String(input.minUserRating));
-      
+
       const path = `/hotels/results?${params.toString()}`;
       window.dispatchEvent(new CustomEvent("tambo:navigate", { detail: { path } }));
       return { success: true, message: `Navigating to ${path}` };
@@ -238,7 +238,7 @@ const bookHotelByName = defineTool({
     const checkOut = input.checkOut || params.get("checkOut") || "";
 
     const filtered = (hotelsData as any[])
-      .filter((h) => {
+      .filter((h: any) => {
         const name = String(h.name || "").toLowerCase();
         const cityMatch = city ? String(h.city || "").toLowerCase().includes(city) : true;
         return cityMatch && name.includes(nameQuery);

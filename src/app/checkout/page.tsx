@@ -316,6 +316,18 @@ const InteractableCheckoutPage = withInteractable(CheckoutPageBase, {
     propsSchema: checkoutSchema,
 });
 
-export default function CheckoutPage() {
+import { Suspense } from "react";
+
+function CheckoutContent() {
     return <InteractableCheckoutPage />;
+}
+
+export default function CheckoutPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <div className="text-xl font-black italic animate-pulse text-blue-500 uppercase tracking-widest">Loading Checkout...</div>
+        </div>}>
+            <CheckoutContent />
+        </Suspense>
+    );
 }

@@ -69,7 +69,7 @@ export default function Hotels() {
               MAKEMYTRIP
             </div>
             <p className="text-gray-400 text-sm max-w-sm">
-              Cloning the world's most trusted travel booking platform UI for AI orchestration demonstration.
+              Cloning the world&apos;s most trusted travel booking platform UI for AI orchestration demonstration.
             </p>
           </div>
           <div className="flex gap-20">

@@ -6,7 +6,9 @@ import { FlightResults } from "@/components/mmt/FlightResults";
 import { ChevronDown } from "lucide-react";
 import { Header } from "@/components/layout/Header";
 
-export default function FlightsPage() {
+import { Suspense } from "react";
+
+function FlightsContent() {
     return (
         <div className="min-h-screen bg-gray-50 font-sans text-gray-900 overflow-x-hidden">
             <Header className="px-8" showCategoryNav />
@@ -30,5 +32,15 @@ export default function FlightsPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function FlightsPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <div className="text-xl font-black italic animate-pulse text-blue-500 uppercase tracking-widest">Searching Flights...</div>
+        </div>}>
+            <FlightsContent />
+        </Suspense>
     );
 }

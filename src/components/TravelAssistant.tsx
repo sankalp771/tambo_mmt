@@ -62,7 +62,7 @@ export function TravelAssistant() {
             <ScrollableMessageContainer className="flex-1 p-6 relative z-10">
               <ThreadContent variant="default">
                 <div className="mb-6 p-5 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl text-xs text-white leading-relaxed font-bold shadow-md shadow-blue-200/60 relative overflow-hidden group">
-                  <b>Welcome to MakeMyTrip!</b> I'm your AI travel assistant. I can help you find flights, pick seats, or answer questions about your booking.
+                  <b>Welcome to MakeMyTrip!</b> I&apos;m your AI travel assistant. I can help you find flights, pick seats, or answer questions about your booking.
                 </div>
                 <ThreadContentMessages />
               </ThreadContent>

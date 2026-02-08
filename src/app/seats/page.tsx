@@ -1,12 +1,12 @@
 "use client";
 
 import { MessageSquare, X, ChevronDown, ChevronRight, Info, Plus, Tag, Check, Minus, Users, ArrowRight, Car, MapPin, Calendar, Clock, Star, Zap, Fuel, ShieldCheck, ShieldPlus, Heart, Trees, Pencil } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, Suspense } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useBooking } from "@/context/BookingContext";
 
-export default function SeatsPage() {
+function SeatsContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { booking, updateBooking } = useBooking();
@@ -651,5 +651,15 @@ export default function SeatsPage() {
                 </div>
             </div>
         </div>
+    );
+}
+
+export default function SeatsPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-gray-50 flex items-center justify-center">
+            <div className="text-xl font-black italic animate-pulse text-blue-500 uppercase tracking-widest">Loading Seats...</div>
+        </div>}>
+            <SeatsContent />
+        </Suspense>
     );
 }

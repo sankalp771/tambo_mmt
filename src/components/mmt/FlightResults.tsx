@@ -14,11 +14,30 @@ const flightResultsSchema = z.object({
 
 type FlightResultsProps = z.infer<typeof flightResultsSchema>;
 
+export interface Flight {
+    id: string;
+    airline: string;
+    flightNumber: string;
+    from: string;
+    fromCity: string;
+    to: string;
+    toCity: string;
+    date: string;
+    departure: string;
+    arrival: string;
+    duration: string;
+    price: string;
+    currency: string;
+    stops: string;
+    class: string;
+    logo: string;
+}
+
 function FlightResultsBase({ highlightedFlightId }: FlightResultsProps) {
     const searchParams = useSearchParams();
     const router = useRouter();
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedFlight, setSelectedFlight] = useState<any>(null);
+    const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null);
 
     const from = searchParams.get("from") || "DEL";
     const to = searchParams.get("to") || "BOM";
@@ -26,14 +45,14 @@ function FlightResultsBase({ highlightedFlightId }: FlightResultsProps) {
 
     const matchesCity = (input: string, code: string, city: string) => {
         const normalizedInput = input.toLowerCase().trim();
-        const normalizedCode = code.toLowerCase();
-        const normalizedCity = city.toLowerCase();
+        const normalizedCode = (code || "").toLowerCase();
+        const normalizedCity = (city || "").toLowerCase();
         return normalizedCode === normalizedInput ||
             normalizedCity.includes(normalizedInput) ||
             normalizedInput.includes(normalizedCity);
     };
 
-    const filteredFlights = flightsData.filter(f =>
+    const filteredFlights = (flightsData as Flight[]).filter((f: Flight) =>
         matchesCity(from, f.from, f.fromCity) &&
         matchesCity(to, f.to, f.toCity) &&
         f.date === dateParam
@@ -41,7 +60,7 @@ function FlightResultsBase({ highlightedFlightId }: FlightResultsProps) {
 
     const flights = filteredFlights;
 
-    const handleViewPrices = (flight: any) => {
+    const handleViewPrices = (flight: Flight) => {
         setSelectedFlight(flight);
         setIsModalOpen(true);
     };
@@ -66,13 +85,13 @@ function FlightResultsBase({ highlightedFlightId }: FlightResultsProps) {
             const label = d.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric' });
 
             // Find a price for this date if it exists
-            const dateFlights = flightsData.filter(f =>
+            const dateFlights = (flightsData as Flight[]).filter((f: Flight) =>
                 matchesCity(from, f.from, f.fromCity) &&
                 matchesCity(to, f.to, f.toCity) &&
                 f.date === dateStr
             );
             const minPrice = dateFlights.length > 0
-                ? `₹ ${Math.min(...dateFlights.map(f => parseInt(f.price))).toLocaleString()}`
+                ? `₹ ${Math.min(...dateFlights.map((f: Flight) => parseInt(f.price))).toLocaleString()}`
                 : "N/A";
 
             dates.push({ day: label, price: minPrice, active: isToday, fullDate: dateStr });
@@ -159,7 +178,7 @@ function FlightResultsBase({ highlightedFlightId }: FlightResultsProps) {
 
                 {/* Flight Cards */}
                 <div className="flex flex-col gap-4">
-                    {flights.length > 0 ? flights.map((flight: any, i: number) => (
+                    {flights.length > 0 ? flights.map((flight: Flight, i: number) => (
                         <div
                             key={flight.id || i}
                             onClick={() => handleViewPrices(flight)}
