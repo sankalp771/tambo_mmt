@@ -1,131 +1,79 @@
-# Tambo Template
+# 🌌 Tambo MMT: The UI Strikes Back 🚀
 
-This is a starter NextJS app with Tambo hooked up to get your AI app development started quickly.
+**Live Demo:** [tambo-mmt.vercel.app](https://tambo-mmt.vercel.app/)
 
-## Get Started
+> "Your journey, simply easier. Powered by the Force of Generative UI."
 
-1. Run `npm create-tambo@latest my-tambo-app` for a new project
+Welcome to **Tambo MMT**, a next-generation travel booking experience built for "The UI Strikes Back" Hackathon. In a galaxy of static, rigid interfaces, we’ve built a "Rebel Alliance" application that adapts to the user in real-time using **Tambo's Generative UI SDK**.
 
-2. `npm install`
+---
 
-3. `npx tambo init`
+## 🎭 The Problem: A Galaxy of Static Interfaces
+Traditional travel apps force users through endless forms, filters, and rigid workflows. If a user wants to "Find a luxury hotel in Udaipur for 3 nights," they usually have to click through 10 screens. 
 
-- or rename `example.env.local` to `.env.local` and add your tambo API key you can get for free [here](https://tambo.co/dashboard).
+## ✨ The Solution: Generative UI Powered by Tambo
+Tambo MMT transforms the travel experience into a **single, intelligent conversation**. 
+Instead of navigating the app, the app navigates the user. By integrating Tambo's AI orchestrator, our interface dynamically decides which components to render—be it a Flight Result Carousel, a Seat Selector, or a Hotel Booking Review—based on the user's natural language intent.
 
-4. Run `npm run dev` and go to `localhost:3000` to use the app!
+---
 
-## Customizing
+## 🛠️ How the Force Works (Tambo Integration)
 
-### Change what components tambo can control
+This project isn't just a chatbot; it's a **Generative UI Orchestrator**. 
 
-You can see how components are registered with tambo in `src/lib/tambo.ts`:
+- **Component Discovery:** We've registered core MMT components (Hotels, Flights, Seats, Checkout) with Tambo.
+- **Natural Language Intent:** The AI understands complex requests like *"Show me flights from Delhi to Mumbai"* or *"Book a room at the Taj Palace"* and instantly renders the precise interaction window required.
+- **Dynamic Interaction:** Using `withInteractable`, the AI can influence the state of the UI, pre-filling passenger details or selecting seats based on conversational context.
 
-```tsx
-export const components: TamboComponent[] = [
-  {
-    name: "Graph",
-    description:
-      "A component that renders various types of charts (bar, line, pie) using Recharts. Supports customizable data visualization with labels, datasets, and styling options.",
-    component: Graph,
-    propsSchema: graphSchema,
-  },
-  // Add more components here
-];
-```
+### 🔌 Tech Stack
+- **Framework:** Next.js 15 (App Router)
+- **Generative UI:** [@tambo-ai/react](https://tambo.ai)
+- **Styling:** Tailwind CSS (Premium Dark/MMT Blue Aesthetic)
+- **Animations:** Framer Motion (Smooth Transitions)
+- **Type Safety:** TypeScript & Zod
 
-You can install the graph component into any project with:
+---
 
-```bash
-npx tambo add graph
-```
-
-The example Graph component demonstrates several key features:
-
-- Different prop types (strings, arrays, enums, nested objects)
-- Multiple chart types (bar, line, pie)
-- Customizable styling (variants, sizes)
-- Optional configurations (title, legend, colors)
-- Data visualization capabilities
-
-Update the `components` array with any component(s) you want tambo to be able to use in a response!
-
-You can find more information about the options [here](https://docs.tambo.co/concepts/generative-interfaces/generative-components)
-
-### Add tools for tambo to use
-
-Tools are defined with `inputSchema` and `outputSchema`:
-
-```tsx
-export const tools: TamboTool[] = [
-  {
-    name: "globalPopulation",
-    description:
-      "A tool to get global population trends with optional year range filtering",
-    tool: getGlobalPopulationTrend,
-    inputSchema: z.object({
-      startYear: z.number().optional(),
-      endYear: z.number().optional(),
-    }),
-    outputSchema: z.array(
-      z.object({
-        year: z.number(),
-        population: z.number(),
-        growthRate: z.number(),
-      }),
-    ),
-  },
-];
-```
-
-Find more information about tools [here.](https://docs.tambo.co/concepts/tools)
-
-### The Magic of Tambo Requires the TamboProvider
-
-Make sure in the TamboProvider wrapped around your app:
-
-```tsx
-...
-<TamboProvider
-  apiKey={process.env.NEXT_PUBLIC_TAMBO_API_KEY!}
-  components={components} // Array of components to control
-  tools={tools} // Array of tools it can use
+## 📝 Note on Data Coverage
+> **⚠️ IMPORTANT:** To maintain high performance for the hackathon demo, data is pulled from a **local .csv dataset**. 
 >
-  {children}
-</TamboProvider>
-```
+> Because of this, only limited searches (e.g., Delhi to Mumbai, Udaipur, Jaisalmer, Manali) will return visible flight/hotel results. This is intentional to ensure the Generative UI demonstrates pinpoint accuracy within the available flight paths and property listings.
 
-In this example we do this in the `Layout.tsx` file, but you can do it anywhere in your app that is a client component.
+---
 
-### Voice input
+## 🚀 Key Features
 
-The template includes a `DictationButton` component using the `useTamboVoice` hook for speech-to-text input.
+*   **AI Flight Concierge:** Talk your way into the cheapest flights.
+*   **Generative Seat Map:** Interactive seat selection that feels fluid and alive.
+*   **Adaptive Checkout:** The UI evolves based on the number of passengers and trip type.
+*   **MMT Aesthetics:** A premium, high-fidelity reconstruction of the MakeMyTrip experience, optimized for Generative AI.
 
-### MCP (Model Context Protocol)
+---
 
-The template includes MCP support for connecting to external tools and resources. You can use the MCP hooks from `@tambo-ai/react/mcp`:
+## 🏗️ Getting Started
 
-- `useTamboMcpPromptList` - List available prompts from MCP servers
-- `useTamboMcpPrompt` - Get a specific prompt
-- `useTamboMcpResourceList` - List available resources
+1.  **Clone the Rebellion:**
+    ```bash
+    git clone https://github.com/sankalp771/tambo_starter.git
+    cd my-tambo-app
+    ```
 
-See `src/components/tambo/mcp-components.tsx` for example usage.
+2.  **Install Supplies:**
+    ```bash
+    npm install
+    ```
 
-### Change where component responses are shown
+3.  **Awaken the App:**
+    ```bash
+    npm run dev
+    ```
 
-The components used by tambo are shown alongside the message response from tambo within the chat thread, but you can have the result components show wherever you like by accessing the latest thread message's `renderedComponent` field:
+---
 
-```tsx
-const { thread } = useTambo();
-const latestComponent =
-  thread?.messages[thread.messages.length - 1]?.renderedComponent;
+## 🏆 Hackathon: The UI Strikes Back
+This project was built during the Tambo Online Hackathon (Feb 2026). It demonstrates how Tambo turns the "User Interface" into a "User Conversation," proving that in the future of web dev, **The AI is the Interface.**
 
-return (
-  <div>
-    {latestComponent && (
-      <div className="my-custom-wrapper">{latestComponent}</div>
-    )}
-  </div>
-);
-```
+---
 
-For more detailed documentation, visit [Tambo's official docs](https://docs.tambo.co).
+**Built with ❤️ and the Force by [Sankalp](https://github.com/sankalp771)**
+**Powered by [Tambo](https://tambo.ai)**
