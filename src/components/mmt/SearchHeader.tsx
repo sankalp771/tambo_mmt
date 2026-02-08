@@ -2,7 +2,7 @@ import { ChevronDown, ArrowLeftRight } from "lucide-react";
 import { withInteractable } from "@tambo-ai/react";
 import { z } from "zod";
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 const searchHeaderSchema = z.object({
     fromCity: z.string(),
@@ -15,6 +15,7 @@ const searchHeaderSchema = z.object({
 type SearchHeaderProps = z.infer<typeof searchHeaderSchema>;
 
 function SearchHeaderBase(props: SearchHeaderProps) {
+    const router = useRouter();
     const [data, setData] = useState<SearchHeaderProps>(props);
 
     useEffect(() => {
@@ -98,7 +99,7 @@ function SearchHeaderBase(props: SearchHeaderProps) {
                             if (typeof window !== 'undefined') {
                                 const from = data.fromCity.split(',')[0].trim();
                                 const to = data.toCity.split(',')[0].trim();
-                                window.location.href = `/flights?from=${from}&to=${to}&date=${data.departureDate}&travellers=${data.travellers}&class=Economy`;
+                                router.push(`/flights?from=${from}&to=${to}&date=${data.departureDate}&travellers=${data.travellers}&class=Economy`);
                             }
                         }}
                         className="bg-gradient-to-r from-blue-400 to-blue-600 text-white rounded-md px-8 py-3 font-black uppercase text-sm shadow-lg shadow-blue-200 hover:scale-105 active:scale-95 transition-transform ml-2"

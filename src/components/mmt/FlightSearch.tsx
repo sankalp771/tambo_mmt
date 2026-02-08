@@ -4,7 +4,7 @@ import { withInteractable } from "@tambo-ai/react";
 import { useEffect, useState } from "react";
 import { z } from "zod";
 import { Search, PlaneTakeoff, PlaneLanding, Calendar, Users, ChevronDown } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const flightSearchSchema = z.object({
   fromCity: z.string(),
@@ -18,6 +18,7 @@ export const flightSearchSchema = z.object({
 type FlightSearchProps = z.infer<typeof flightSearchSchema>;
 
 function FlightSearchBase(props: FlightSearchProps) {
+  const router = useRouter();
   const [data, setData] = useState<FlightSearchProps>(props);
   const [isSyncing, setIsSyncing] = useState(false);
 
@@ -34,7 +35,7 @@ function FlightSearchBase(props: FlightSearchProps) {
         if (typeof window !== 'undefined') {
           const from = props.fromCity.split(',')[0].trim();
           const to = props.toCity.split(',')[0].trim();
-          window.location.href = `/flights?from=${from}&to=${to}&date=${props.departureDate}&travellers=${props.travellers}&class=${props.travelClass}`;
+          router.push(`/flights?from=${from}&to=${to}&date=${props.departureDate}&travellers=${props.travellers}&class=${props.travelClass}`);
         }
       }, 2500);
       return () => clearTimeout(timer);
@@ -173,13 +174,17 @@ function FlightSearchBase(props: FlightSearchProps) {
 
       {/* Search Button */}
       <div className="absolute -bottom-9 left-1/2 -translate-x-1/2">
-        <Link
-          href={`/flights?from=${data.fromCity.split(',')[0].trim()}&to=${data.toCity.split(',')[0].trim()}&date=${data.departureDate}&travellers=${data.travellers}&class=${data.travelClass}`}
+        <button
+          onClick={() => {
+            const from = data.fromCity.split(',')[0].trim();
+            const to = data.toCity.split(',')[0].trim();
+            router.push(`/flights?from=${from}&to=${to}&date=${data.departureDate}&travellers=${data.travellers}&class=${data.travelClass}`);
+          }}
           className="relative block group overflow-hidden bg-gradient-to-r from-[#008cff] to-[#0057ff] text-white px-24 py-5 rounded-full font-black text-3xl shadow-[0_15px_30px_-5px_rgba(37,99,235,0.4)] hover:shadow-[0_20px_40px_-5px_rgba(37,99,235,0.6)] hover:scale-105 active:scale-95 transition-all uppercase tracking-tighter italic text-center"
         >
           <span className="relative z-10">Search</span>
           <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-        </Link>
+        </button>
       </div>
     </div>
   );

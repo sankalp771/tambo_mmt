@@ -9,6 +9,11 @@ import { withInteractable } from "@tambo-ai/react";
 import { z } from "zod";
 
 const checkoutSchema = z.object({
+    passengersArray: z.array(z.object({
+        name: z.string(),
+        age: z.string(),
+        gender: z.enum(['Male', 'Female', 'Other'])
+    })).optional(),
     passengerName: z.string().optional(),
     passengerAge: z.string().optional(),
     passengerGender: z.enum(['Male', 'Female', 'Other']).optional(),
@@ -24,16 +29,23 @@ function CheckoutPageBase(props: CheckoutProps) {
 
     // Sync AI props to local booking context
     useEffect(() => {
-        if (props.passengerName || props.contactEmail || props.contactMobile) {
-            updateBooking({
-                passengers: props.passengerName ? [{
-                    name: props.passengerName,
-                    age: props.passengerAge || '21',
-                    gender: props.passengerGender || 'Male'
-                }] : booking.passengers,
-                contactEmail: props.contactEmail || booking.contactEmail,
-                contactMobile: props.contactMobile || booking.contactMobile,
-            });
+        const updates: any = {};
+
+        if (props.passengersArray && props.passengersArray.length > 0) {
+            updates.passengers = props.passengersArray;
+        } else if (props.passengerName) {
+            updates.passengers = [{
+                name: props.passengerName,
+                age: props.passengerAge || '21',
+                gender: props.passengerGender || 'Male'
+            }];
+        }
+
+        if (props.contactEmail) updates.contactEmail = props.contactEmail;
+        if (props.contactMobile) updates.contactMobile = props.contactMobile;
+
+        if (Object.keys(updates).length > 0) {
+            updateBooking(updates);
         }
     }, [props]);
 

@@ -153,7 +153,12 @@ export const tools: TamboTool[] = [
           departure: input.departure, arrival: input.arrival,
           from: input.from, to: input.to, logo: input.logo
         });
-        window.location.href = `/checkout?${params.toString()}`;
+
+        // Dispatch custom event for client-side navigation
+        const navigateEvent = new CustomEvent('tambo:navigate', {
+          detail: { url: `/checkout?${params.toString()}` }
+        });
+        window.dispatchEvent(navigateEvent);
       }
       return { success: true };
     },
