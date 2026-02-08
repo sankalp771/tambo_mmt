@@ -62,23 +62,36 @@ export function TravelAssistant() {
             <ScrollableMessageContainer className="flex-1 p-6 relative z-10">
               <ThreadContent variant="default">
                 <div className="mb-6 p-5 bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl text-xs text-white leading-relaxed font-bold shadow-md shadow-blue-200/60 relative overflow-hidden group">
-                 <b>Welcome to MakeMyTrip!</b> I'm your AI travel assistant. I can help you find flights, pick seats, or answer questions about your booking.
+                  <b>Welcome to MakeMyTrip!</b> I'm your AI travel assistant. I can help you find flights, pick seats, or answer questions about your booking.
                 </div>
                 <ThreadContentMessages />
               </ThreadContent>
             </ScrollableMessageContainer>
           </div>
 
-          <div className="p-4 border-t bg-white/85 backdrop-blur relative z-10">
-            <MessageInput variant="bordered">
-              <MessageInputTextarea
-                placeholder="Where would you like to go?"
-                className="text-sm min-h-[52px] !bg-white border-gray-200 focus:border-blue-500 py-3.5 px-4 rounded-2xl shadow-[inset_0_1px_0_rgba(255,255,255,0.6)]"
-              />
-              <MessageInputToolbar>
-                <div className="flex-1"></div>
-                <MessageInputSubmitButton className="bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white rounded-2xl p-2.5 transition-all shadow-lg shadow-blue-200/70" />
-              </MessageInputToolbar>
+          <div className="p-3 border-t bg-white/95 backdrop-blur relative z-10">
+            <MessageInput variant="meet">
+              <div className="flex items-center w-full gap-2">
+                <MessageInputTextarea
+                  placeholder="Send a message"
+                  className="text-[13px] flex-1 !bg-transparent !border-0 focus:ring-0 !p-2 !min-h-0 h-10 flex items-center"
+                />
+                <MessageInputSubmitButton className="!bg-transparent !text-zinc-400 hover:!text-blue-600 !w-9 !h-9 !rounded-full transition-colors shrink-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="w-5 h-5"
+                  >
+                    <line x1="22" y1="2" x2="11" y2="13"></line>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                  </svg>
+                </MessageInputSubmitButton>
+              </div>
             </MessageInput>
           </div>
         </div>
