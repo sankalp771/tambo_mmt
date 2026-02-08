@@ -42,7 +42,7 @@ export function SearchTabs() {
 
         <div className="px-6 pb-8 pt-4">
           {activeTab === "Flights" && (
-            <div className="search-tabs-flight">
+            <div className="search-tabs-flight pb-16">
               <FlightSearch />
             </div>
           )}

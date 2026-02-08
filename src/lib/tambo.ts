@@ -10,7 +10,8 @@ import { SearchHeader } from "@/components/mmt/SearchHeader";
 import { FlightResults } from "@/components/mmt/FlightResults";
 import { FlightFilters } from "@/components/mmt/FlightFilters";
 import { HotelSearchCard } from "@/components/mmt/hotels/HotelSearchCard";
-import flightsData from "@/lib/data/flights.json";
+import rawFlightsData from "@/lib/data/flights_data.json";
+const flightsData = Array.isArray(rawFlightsData) ? rawFlightsData : (rawFlightsData as any).flights || [];
 import {
   getCountryPopulations,
   getGlobalPopulationTrend,
@@ -166,10 +167,102 @@ export const tools: TamboTool[] = [
     inputSchema: z.object({ startYear: z.number().optional() }),
     outputSchema: z.any()
   },
-  searchFlights,
   navigateTo,
   navigateToHotelCatalog,
-  navigateToHotelDetails
+  navigateToHotelDetails,
+  {
+    name: "searchFlights",
+    description: "Search for available flights. ALSO UPDATES THE URL to show results on the page.",
+    tool: async (input: { from: string; to: string; date: string; travellers?: number }) => {
+      const matchesCity = (inputVal: string, code: string, city: string) => {
+        const normalizedInput = inputVal.toLowerCase().trim();
+        const normalizedCode = code.toLowerCase();
+        const normalizedCity = city.toLowerCase();
+        return normalizedCode === normalizedInput ||
+          normalizedCity.includes(normalizedInput) ||
+          normalizedInput.includes(normalizedCity);
+      };
+
+      if (typeof window !== 'undefined') {
+        const url = new URL(window.location.href);
+        url.searchParams.set("from", input.from);
+        url.searchParams.set("to", input.to);
+        url.searchParams.set("date", input.date);
+        if (input.travellers) url.searchParams.set("travellers", input.travellers.toString());
+        window.history.pushState({}, '', url.toString());
+      }
+
+      const results = flightsData.filter((f: any) =>
+        matchesCity(input.from, f.from, f.fromCity) &&
+        matchesCity(input.to, f.to, f.toCity) &&
+        f.date === input.date
+      );
+      return results.map((f: any) => ({
+        id: f.id,
+        airline: f.airline,
+        price: `₹ ${parseInt(f.price).toLocaleString()}`,
+        time: `${f.departure} - ${f.arrival}`,
+        departure: f.departure,
+        arrival: f.arrival,
+        from: f.from,
+        to: f.to,
+        duration: f.duration,
+        flightNumber: f.flightNumber,
+        logo: f.logo
+      }));
+    },
+    inputSchema: z.object({
+      from: z.string(),
+      to: z.string(),
+      date: z.string(),
+      travellers: z.number().optional(),
+    }),
+    outputSchema: z.array(z.object({
+      id: z.string(),
+      airline: z.string(),
+      price: z.string(),
+      time: z.string(),
+      departure: z.string(),
+      arrival: z.string(),
+      from: z.string(),
+      to: z.string(),
+      duration: z.string(),
+      flightNumber: z.string(),
+      logo: z.string().optional()
+    })),
+  },
+  {
+    name: "bookFlight",
+    description: "NAVIGATE to the checkout page for a specific flight.",
+    tool: async (input: {
+      id: string; airline: string; price: string;
+      departure: string; arrival: string; from: string;
+      to: string; logo: string;
+    }) => {
+      if (typeof window !== 'undefined') {
+        const params = new URLSearchParams({
+          id: input.id, airline: input.airline,
+          price: input.price.replace('₹ ', '').replace(',', ''),
+          departure: input.departure, arrival: input.arrival,
+          from: input.from, to: input.to, logo: input.logo
+        });
+
+        // Dispatch custom event for client-side navigation
+        const navigateEvent = new CustomEvent('tambo:navigate', {
+          detail: { url: `/checkout?${params.toString()}` }
+        });
+        window.dispatchEvent(navigateEvent);
+      }
+      return { success: true };
+    },
+    inputSchema: z.object({
+      id: z.string(), airline: z.string(), price: z.string(),
+      departure: z.string(), arrival: z.string(), from: z.string(),
+      to: z.string(), logo: z.string()
+    }),
+    outputSchema: z.object({ success: z.boolean() })
+  },
+  // Add more tools here
 ];
 
 // ============================================
