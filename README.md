@@ -35,9 +35,13 @@ This project isn't just a chatbot; it's a **Generative UI Orchestrator**.
 ---
 
 ## 📝 Note on Data Coverage
-> **⚠️ IMPORTANT:** To maintain high performance for the hackathon demo, data is pulled from a **local .csv dataset**. 
+> **⚠️ IMPORTANT:** To maintain high performance for the hackathon demo, data is pulled from a **local dataset**. 
 >
-> Because of this, only limited searches (e.g., Delhi to Mumbai, Udaipur, Jaisalmer, Manali) will return visible flight/hotel results. This is intentional to ensure the Generative UI demonstrates pinpoint accuracy within the available flight paths and property listings.
+> **Best things to search/test:**
+> - **Flights:** Search from **Delhi (DEL)** to **Mumbai (BOM)** for the date **2026-02-08** (today).
+> - **Hotels:** Search for cities like **Udaipur**, **Jaisalmer**, **Manali**, or **Goa**.
+>
+> This focused dataset ensures the Generative UI demonstrates pinpoint accuracy within the available flight paths and property listings.
 
 ---
 
@@ -75,5 +79,5 @@ This project was built during the Tambo Online Hackathon (Feb 2026). It demonstr
 
 ---
 
-**Built with ❤️ and the Force by [Sankalp](https://github.com/sankalp771)**
+**Built with ❤️ and the Force by [Sankalp](https://github.com/sankalp771) & [Duvesh](https://github.com/duveshp)**
 **Powered by [Tambo](https://tambo.ai)**
