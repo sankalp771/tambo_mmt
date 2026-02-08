@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  transpilePackages: ["@tambo-ai/react", "@standard-community/standard-json"],
   // Run ESLint separately via `npm run lint` (avoids deprecated next lint)
   eslint: {
     ignoreDuringBuilds: true,

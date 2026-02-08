@@ -8,9 +8,9 @@ import Mention from "@tiptap/extension-mention";
 import Paragraph from "@tiptap/extension-paragraph";
 import Placeholder from "@tiptap/extension-placeholder";
 import Text from "@tiptap/extension-text";
+import { Extension } from "@tiptap/core";
 import {
   EditorContent,
-  Extension,
   useEditor,
   type Editor,
 } from "@tiptap/react";

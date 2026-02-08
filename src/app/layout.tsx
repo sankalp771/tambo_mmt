@@ -14,6 +14,7 @@ const geistMono = Geist_Mono({
 import { TamboClientProvider } from "@/components/TamboClientProvider";
 import { TravelAssistant } from "@/components/TravelAssistant";
 import { BookingProvider } from "@/context/BookingContext";
+import { NavigationHandler } from "@/components/NavigationHandler";
 
 export default function RootLayout({
   children,
@@ -27,6 +28,7 @@ export default function RootLayout({
       >
         <BookingProvider>
           <TamboClientProvider>
+            <NavigationHandler />
             {children}
             <TravelAssistant />
           </TamboClientProvider>

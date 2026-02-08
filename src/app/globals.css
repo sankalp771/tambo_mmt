@@ -164,3 +164,21 @@ Animated gradient for thinking text, creates a shimmering effect that moves acro
   -webkit-text-fill-color: transparent;
   animation: thinking-gradient 2s linear infinite;
 }
+
+/* Hide FlightSearch's internal tab row when wrapped by SearchTabs */
+.search-tabs-flight > div > div.border-b {
+  display: none;
+}
+
+/* Normalize FlightSearch card when wrapped by SearchTabs */
+.search-tabs-flight > div {
+  margin-top: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+.search-tabs-flight > div > div.absolute {
+  display: none;
+}

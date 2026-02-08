@@ -1,6 +1,6 @@
 "use client";
 
-import { FlightSearch } from "@/components/mmt/FlightSearch";
+import { SearchTabs } from "@/components/mmt/SearchTabs";
 import { MessageSquare, ChevronDown, Globe, MapPin } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -100,7 +100,7 @@ export default function Home() {
 
       {/* Floating Search Container - Overlapping the hero */}
       <div className="relative z-40 max-w-[1240px] mx-auto px-4 -mt-36">
-        <FlightSearch />
+        <SearchTabs />
       </div>
 
       {/* Sub Navigation Bar - MMT ICICI, MICE, etc */}
