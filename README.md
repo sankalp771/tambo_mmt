@@ -31,8 +31,9 @@ This project isn't just a chatbot; it's a **Generative UI Orchestrator**.
 - **Styling:** Tailwind CSS (Premium Dark/MMT Blue Aesthetic)
 - **Animations:** Framer Motion (Smooth Transitions)
 - **Type Safety:** TypeScript & Zod
+- **AI Tools:** Claude, ChatGPT, CoPilot, Antigravity
 
----
+--
 
 ## 📝 Note on Data Coverage
 > **⚠️ IMPORTANT:** To maintain high performance for the hackathon demo, data is pulled from a **local dataset**. 
